@@ -1,0 +1,20 @@
+﻿@model OnlinePaymentsApp.Web.Models.User.UserProfileViewModel
+@{
+    ViewData["Title"] = "Профил";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary mb-4">Добре дошли, @Model.Name!</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">Потребителска информация</h5>
+            <p><strong>Имена:</strong> @Model.Name</p>
+            <p><strong>Потребителско име:</strong> @Model.Username</p>
+            
+            <a asp-controller="User" asp-action="Edit" asp-route-id="@Model.UserId" class="btn btn-outline-primary mt-3">
+                Редактирай профила
+            </a>
+        </div>
+    </div>
+</div>

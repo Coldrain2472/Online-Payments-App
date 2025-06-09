@@ -1,0 +1,42 @@
+﻿@model OnlinePaymentsApp.Web.Models.Payment.CreatePaymentViewModel
+@{
+    ViewData["Title"] = "Създаване на ново плащане";
+}
+
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+
+    <form asp-action="Create" method="post" novalidate>
+        <div class="mb-3">
+            <label asp-for="FromAccountId" class="form-label"></label>
+            <select asp-for="FromAccountId" class="form-select" asp-items="@(new SelectList(Model.UserAccounts, "AccountId", "DisplayText"))">
+                <option value="">-- Изберете сметка --</option>
+            </select>
+            <span asp-validation-for="FromAccountId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ToAccountNumber" class="form-label"></label>
+            <input asp-for="ToAccountNumber" class="form-control" maxlength="22" />
+            <span asp-validation-for="ToAccountNumber" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Amount" class="form-label"></label>
+            <input asp-for="Amount" class="form-control" step="0.01" min="0.01" />
+            <span asp-validation-for="Amount" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Reason" class="form-label"></label>
+            <input asp-for="Reason" class="form-control" maxlength="32" />
+            <span asp-validation-for="Reason" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Създай плащане</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
